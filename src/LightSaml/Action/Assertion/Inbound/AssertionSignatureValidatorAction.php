@@ -51,8 +51,9 @@ class AssertionSignatureValidatorAction extends AbstractAssertionAction
     protected function doExecute(AssertionContext $context)
     {
         $signature = $context->getAssertion()->getSignature();
+        $wantSignature = $context->getProfileContext()->getPartyEntityDescriptor()->getFirstIdpSsoDescriptor()->getWantAuthnRequestsSigned();
         if (null === $signature) {
-            if ($this->requireSignature) {
+            if ($this->requireSignature && $wantSignature) {
                 $message = 'Assertions must be signed';
                 $this->logger->critical($message, LogHelper::getActionErrorContext($context, $this));
                 throw new LightSamlContextException($context, $message);
