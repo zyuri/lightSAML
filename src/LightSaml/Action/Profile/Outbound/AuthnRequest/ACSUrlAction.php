@@ -26,7 +26,6 @@ use LightSaml\Resolver\Endpoint\EndpointResolverInterface;
 use LightSaml\SamlConstants;
 use Psr\Log\LoggerInterface;
 
-// TODO ACSUrlAction not used in profile builder, has to be added
 class ACSUrlAction extends AbstractProfileAction
 {
     /** @var EndpointResolverInterface */
