@@ -12,6 +12,7 @@
 namespace LightSaml\Builder\Action\Profile\SingleSignOn\Sp;
 
 use LightSaml\Action\DispatchEventAction;
+use LightSaml\Action\Profile\Outbound\AuthnRequest\ACSUrlAction;
 use LightSaml\Action\Profile\Outbound\AuthnRequest\CreateAuthnRequestAction;
 use LightSaml\Action\Profile\Outbound\Message\CreateMessageIssuerAction;
 use LightSaml\Action\Profile\Outbound\Message\DestinationAction;
@@ -39,6 +40,10 @@ class SsoSpSendAuthnRequestActionBuilder extends AbstractProfileActionBuilder
             $this->buildContainer->getSystemContainer()->getLogger(),
             $this->buildContainer->getServiceContainer()->getEndpointResolver()
         ), 100);
+        $this->add(new ACSUrlAction(
+            $this->buildContainer->getSystemContainer()->getLogger(),
+            $this->buildContainer->getServiceContainer()->getEndpointResolver()
+        ));
         $this->add(new CreateAuthnRequestAction(
             $this->buildContainer->getSystemContainer()->getLogger()
         ));
